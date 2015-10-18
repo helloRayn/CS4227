@@ -1,21 +1,21 @@
-package Item;
+package decorator;
+
 abstract class ItemDecorator implements Items {
 	
-	protected Items itemToBeDecorted;
+	protected Items itemToBeDecorated;
 	protected String name;
 	protected String desc;
 	
-	public ItemDecorator (Items itemToBeDecorted){
-		this.itemToBeDecorted = itemToBeDecorted;
+	public ItemDecorator (Items itemToBeDecorated){
+		this.itemToBeDecorated = itemToBeDecorated;
 	}
 	
 	public String getName(){
-		return itemToBeDecorted.getName();
+		return itemToBeDecorated.getName();
 	}
 	
-	public String getDesc(){
-		return itemToBeDecorted.getDesc();
-	}
+	//What does this even do? - Mikey
+	//public String getDesc(){itemToBeDecorated}
 	
 }
 class TestItem extends ItemDecorator {
