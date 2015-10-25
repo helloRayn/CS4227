@@ -1,12 +1,16 @@
 package characterStructure;
 import java.util.*;
-
+import roomConstructor.*;
 
 //Interface for grouping player and npc classes.
 public interface Character {
+
+	private Room roomIamIn;
+	public Room getRoomIamIn();
+	public void setRoomIamIn(Room newRoom);
 	
-	public ArrayList<Item> heldItems = new ArrayList<Item>();
-	public ArrayList<Item> getItems();
+	private ArrayList<Item> heldItems;
+	private ArrayList<Item> getItems();
 	public void addItem(Item newItem);
 	public void insertItem(Item newItem, int index);
 	

@@ -1,15 +1,27 @@
 package characterStructure;
 import java.util.*;
+import roomConstructor.*;
 
 
 
 //Class for handling the player
 public class Player implements Character {
 	private ArrayList<Item> heldItems;
-	
+	private Room roomIamIn;
 
-	public Player() {
+	public Player(Room roomIn) {
 		heldItems = new ArrayList<Item>();
+		roomIamIn = roomIn;
+	}
+	
+	public Room getRoomIamIn()
+	{
+		return roomIamIn;
+	}
+	
+	public void setRoomIamIn(Room newRoom)
+	{
+		roomIamIn = newRoom;
 	}
 	
 	public ArrayList<Item> getItems() {
