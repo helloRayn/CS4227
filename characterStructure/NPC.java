@@ -5,10 +5,10 @@ import roomConstructor.*;
 
 
 //Class for NPC's (NON-PLAYER-CHARACTERS, a.k.a. computer controlled characters)
-public class NPC implements Character {
-	private ArrayList<Item> heldItems;
+public class NPC extends Character {
+	// protected ArrayList<Item> heldItems;		Declared in parent
+	// protected Room roomIamIn;				Declared in parent
 	private Strategy_AI_Interface movementAI;
-	private Room roomIamIn;
 
 	public NPC(Strategy_AI_Interface inAI, Room roomIn) 	{
 		heldItems = new ArrayList<Item>();
@@ -17,30 +17,9 @@ public class NPC implements Character {
 	}
 	
 	//execute AI movement logic
+	@Override
 	public void move() 	{
-		movementAI.execute();
-	}
-	
-	public Room getRoomIamIn()
-	{
-		return roomIamIn;
-	}
-	
-	public void setRoomIamIn(Room newRoom)
-	{
-		roomIamIn = newRoom;
-	}
-	
-	public ArrayList<Item> getItems() 	{
-		return heldItems;
-	}
-	
-	public void addItem(Item newItem) 	{
-		heldItems.add(newItem);
-	}
-	
-	public void insertItem(Item newItem, int index) 	{
-		heldItems.add(index, newItem);
+		movementAI.execute(roomIamIn);
 	}
 	
 }
