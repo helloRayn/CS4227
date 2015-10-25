@@ -1,10 +1,10 @@
-package characterStructure;
-
-public class Item {
+public class Item
+{
 	//PLACEHOLDER CLASS FOR ITEM USED FOR DEBUGGING
 	private String name;
 	
-	public Item(String inName) {
+	public Item(String inName)
+	{
 		name = inName;
 	}
 	

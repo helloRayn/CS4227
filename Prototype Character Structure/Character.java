@@ -1,10 +1,7 @@
-package characterStructure;
 import java.util.*;
-
-
 //Interface for grouping player and npc classes.
-public interface Character {
-	
+public interface Character
+{
 	public ArrayList<Item> heldItems = new ArrayList<Item>();
 	public ArrayList<Item> getItems();
 	public void addItem(Item newItem);
