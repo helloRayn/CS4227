@@ -1,13 +1,28 @@
 package characterStructure;
 import java.util.*;
 
+import decorator.Items;
 import roomConstructor.*;
 
 //Interface for grouping player and npc classes.
 public abstract class Character {
 
 	protected Room roomIamIn;
-	protected ArrayList<Item> heldItems;
+	protected ArrayList<Items> heldItems;
+	protected int itemCount;
+	
+	//Constructor (For use by NPCs)
+	public Character() {
+		heldItems = new ArrayList<Items>();
+	}
+	//Overloaded constructor
+	public Character(Room startRoom) {
+		heldItems = new ArrayList<Items>();
+		setRoomIamIn(startRoom);
+	}
+	
+	
+	
 	
 	//Getters and setters
 	//returns room that the character is in
@@ -19,18 +34,23 @@ public abstract class Character {
 	}
 	
 	//Returns list of items carried by character
-	public ArrayList<Item> getItems() {
+	public ArrayList<Items> getItems() {
 		return heldItems;
+	}//Shows how many items held by player
+	public int howManyItems() {
+		return itemCount;
 	}//adds item to list
-	public void addItem(Item newItem) {
+	public void addItem(Items newItem) {
 		heldItems.add(newItem);
-	}
-	public void removeItem(Item newItem) {
+		itemCount++;
+	}//removes item
+	public void removeItem(Items newItem) {
 		heldItems.remove(newItem);
+		itemCount--;
 	}
 	
 	//Is this really necessary? - Mike
-	public void insertItem(Item newItem, int index) {
+	public void insertItem(Items newItem, int index) {
 		heldItems.add(index, newItem);
 	}
 	

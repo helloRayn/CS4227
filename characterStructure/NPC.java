@@ -1,6 +1,7 @@
 package characterStructure;
 import java.util.*;
 import roomConstructor.*;
+import decorator.Items;
 
 
 
@@ -11,7 +12,7 @@ public class NPC extends Character {
 	private Strategy_AI_Interface movementAI;
 
 	public NPC(Strategy_AI_Interface inAI, Room roomIn) 	{
-		heldItems = new ArrayList<Item>();
+		heldItems = new ArrayList<Items>();
 		movementAI = inAI;
 		roomIamIn = roomIn;
 	}

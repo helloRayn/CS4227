@@ -9,9 +9,8 @@ public class Player extends Character {
 	// protected ArrayList<Item> heldItems;		Declared in parent
 	// protected Room roomIamIn;				Declared in parent
 
-	public Player(Room roomIn) {
-		heldItems = new ArrayList<Item>();
-		roomIamIn = roomIn;
+	public Player(Room startRoom) {
+		super(startRoom);
 	}
 	
 	
