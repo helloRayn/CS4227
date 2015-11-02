@@ -15,10 +15,12 @@ abstract class ItemDecorator implements Items {
 	}
 	
 	//What does this even do? - Mikey
-	//public String getDesc(){itemToBeDecorated}
+	public String getDesc(){
+		return itemToBeDecorated.getName();
+	}
 	
 }
-class TestItem extends ItemDecorator {
+/*class TestItem extends ItemDecorator {
 	
 	public TestItem (Items i){
 		super(i);
@@ -33,4 +35,4 @@ class TestItem extends ItemDecorator {
 	public String getDesc(){
 		return desc;
 	}
-}
+}*/
