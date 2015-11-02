@@ -5,7 +5,7 @@ import decorator.Items;
 import roomConstructor.*;
 
 //Interface for grouping player and npc classes.
-public abstract class Character {
+public abstract class Character{
 
 	protected Room roomIamIn;
 	protected ArrayList<Items> heldItems;
@@ -21,8 +21,24 @@ public abstract class Character {
 		setRoomIamIn(startRoom);
 	}
 	
+	public void registerObserver(ObserverOfCharacter inObserver)
+	{
+		listOfObservers.add(inObserver);
+	}
 	
+	public void unregisterObserver(ObserverOfCharacter inObserver)
+	{
+		for(int i = 0; i < listOfObservers.Size(); i++)
+		{
+			if(inObserver.getName().matches(listOfObservers.get(i).getObserverName()))
+			{
+				inObserver.remove(i);
+				break;
+			}
+		}
+	}
 	
+	public abstract void notifyAll()
 	
 	//Getters and setters
 	//returns room that the character is in
@@ -55,5 +71,5 @@ public abstract class Character {
 	}
 	
 	//I'm not sure about this method, we need to talk about how we move npcs. -Owen
-	public abstract void move();
+	public abstract void move(Door exit);
 }

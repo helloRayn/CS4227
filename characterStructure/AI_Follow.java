@@ -7,7 +7,7 @@ public class AI_Follow implements Strategy_AI_Interface
 	public AI_Follow() 	{
 	}
 	
-	public void execute(Room currentRoom) 	{
+	public void execute(AI_Object theObject) 	{
 		System.out.println("Follow AI Executed.");
 	}
 }

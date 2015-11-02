@@ -7,7 +7,7 @@ public class AI_Stay implements Strategy_AI_Interface
 	public AI_Stay() 	{
 	}
 	
-	public void execute(Room currentRoom) 	{
+	public void execute(AI_Object theObject) 	{
 		System.out.println("Stay AI Executed.");
 	}
 }
