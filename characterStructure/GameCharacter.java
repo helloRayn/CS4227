@@ -5,18 +5,18 @@ import decorator.Items;
 import roomConstructor.*;
 
 //Interface for grouping player and npc classes.
-public abstract class Character {
+public abstract class GameCharacter {
 
 	protected Room roomIamIn;
 	protected ArrayList<Items> heldItems;
 	protected int itemCount;
 	
 	//Constructor (For use by NPCs)
-	public Character() {
+	public GameCharacter() {
 		heldItems = new ArrayList<Items>();
 	}
 	//Overloaded constructor
-	public Character(Room startRoom) {
+	public GameCharacter(Room startRoom) {
 		heldItems = new ArrayList<Items>();
 		setRoomIamIn(startRoom);
 	}
@@ -55,5 +55,5 @@ public abstract class Character {
 	}
 	
 	//I'm not sure about this method, we need to talk about how we move npcs. -Owen
-	public abstract void move();
+	public abstract void move(ArrayList<USEABLE_BY_AI> Stuff_Used_By_Our_AI);
 }
