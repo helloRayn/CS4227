@@ -1,3 +1,5 @@
+package UI;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -9,26 +11,16 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
+import characterStructure.GameCharacter;
+import decorator.Items;
 
-public class MainWindow extends JFrame {
+
+public class MainWindow extends JFrame implements UserInterface {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainWindow frame = new MainWindow();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JList roomItemsList;
+	private JList myItemsList;
+	
 
 	/**
 	 * Create the frame.
@@ -73,12 +65,28 @@ public class MainWindow extends JFrame {
 		myItemsLabel.setBounds(347, 143, 46, 14);
 		contentPane.add(myItemsLabel);
 		
-		JList roomItemsList = new JList();
+		roomItemsList = new JList();
 		roomItemsList.setBounds(208, 168, 94, 82);
 		contentPane.add(roomItemsList);
 		
-		JList myItemsList = new JList();
+		myItemsList = new JList();
 		myItemsList.setBounds(324, 168, 89, 82);
 		contentPane.add(myItemsList);
+	}
+
+	@Override
+	public void viewItems(GameCharacter theCharacter) {
+		/*ArrayList<Items> itemList = theCharacter.getItems();
+		
+		//No idea if this will work
+		myItemsList = new JList(theCharacter.getItems().toArray())
+		myItemsList.setBounds(324, 168, 89, 82);
+		contentPane.add(myItemsList);*/
+	}
+	public void useItem(Items theItem) {
+
+	}
+	public void display(String toDisplay) {
+
 	}
 }

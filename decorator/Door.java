@@ -1,6 +1,6 @@
 package decorator;
 
-public abstract class Door implements Items{
+public abstract class Door implements Items {
 	
 	private String name;
 	private String desc;

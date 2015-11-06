@@ -6,7 +6,7 @@ import decorator.Items;
 
 
 //Class for NPC's (NON-PLAYER-CHARACTERS, a.k.a. computer controlled characters)
-public class NPC extends GameCharacter implements USEABLE_BY_AI{
+public class NPC extends GameCharacter {
 	// protected ArrayList<Item> heldItems;		Declared in parent
 	// protected Room roomIamIn;				Declared in parent
 	private Strategy_AI_Interface movementAI;
@@ -19,8 +19,8 @@ public class NPC extends GameCharacter implements USEABLE_BY_AI{
 	
 	//execute AI movement logic
 	@Override
-	public void move(ArrayList<USEABLE_BY_AI> Stuff_Used_By_Our_AI) 	{
-		movementAI.execute(Stuff_Used_By_Our_AI);
+	public void move(AI_Object interactable) {
+		movementAI.execute(interactable);
 	}
 	
 }

@@ -49,11 +49,6 @@ public abstract class GameCharacter {
 		itemCount--;
 	}
 	
-	//Is this really necessary? - Mike
-	public void insertItem(Items newItem, int index) {
-		heldItems.add(index, newItem);
-	}
-	
 	//I'm not sure about this method, we need to talk about how we move npcs. -Owen
-	public abstract void move(ArrayList<USEABLE_BY_AI> Stuff_Used_By_Our_AI);
+	public abstract void move(AI_Object interactable);
 }

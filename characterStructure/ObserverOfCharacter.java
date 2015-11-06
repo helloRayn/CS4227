@@ -1,8 +1,11 @@
+package characterStructure;
+
 public interface ObserverOfCharacter
 {
-	private String observerName;
-	
+	//Subject has a list of observers, and needs to register and unregister, this is required for
+	//  identifying these observers.
 	public String getObserverName();
 
-	public void notify();
+	//Necessary for Observer pattern.
+	public void notifyObservers();
 }

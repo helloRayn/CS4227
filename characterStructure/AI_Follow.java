@@ -1,4 +1,6 @@
 package characterStructure;
+import java.util.ArrayList;
+
 import roomConstructor.*;
 
 public class AI_Follow implements Strategy_AI_Interface
@@ -7,7 +9,7 @@ public class AI_Follow implements Strategy_AI_Interface
 	public AI_Follow() 	{
 	}
 	
-	public void execute(ArrayList<USEABLE_BY_AI> Stuff_Used_By_Our_AI) 	{
+	public void execute(AI_Object interactable) {
 		System.out.println("Follow AI Executed.");
 	}
 }
