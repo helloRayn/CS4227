@@ -13,6 +13,7 @@ import javax.swing.JList;
 
 import characterStructure.GameCharacter;
 import decorator.Items;
+import UI.MoveListener;
 
 
 public class GraphicUserInterface extends JFrame implements UserInterface {
@@ -22,10 +23,17 @@ public class GraphicUserInterface extends JFrame implements UserInterface {
 	private JList myItemsList;
 	
 
+	//Buttons
+	
 	/**
 	 * Create the frame.
 	 */
 	public GraphicUserInterface() {
+		initialSetup();
+		addListeners();
+	}
+	
+	private void initialSetup() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -40,22 +48,6 @@ public class GraphicUserInterface extends JFrame implements UserInterface {
 		JButton previousRoomButton = new JButton("<< Previous Room");
 		previousRoomButton.setBounds(32, 207, 131, 23);
 		contentPane.add(previousRoomButton);
-		
-		JButton northButton = new JButton("North");
-		northButton.setBounds(265, 25, 89, 23);
-		contentPane.add(northButton);
-		
-		JButton westButton = new JButton("West");
-		westButton.setBounds(190, 59, 89, 23);
-		contentPane.add(westButton);
-		
-		JButton eastButton = new JButton("East");
-		eastButton.setBounds(335, 59, 89, 23);
-		contentPane.add(eastButton);
-		
-		JButton southButton = new JButton("South");
-		southButton.setBounds(265, 93, 89, 23);
-		contentPane.add(southButton);
 		
 		JLabel roomItemsLabel = new JLabel("Room Items");
 		roomItemsLabel.setBounds(222, 143, 57, 14);
@@ -74,7 +66,42 @@ public class GraphicUserInterface extends JFrame implements UserInterface {
 		contentPane.add(myItemsList);
 	}
 
-	@Override
+	//Set up directional buttons and their listeners
+	private void addListeners() {
+		//Declare listeners
+		MoveListener northListener = new MoveListener();
+		MoveListener eastListener = new MoveListener();
+		MoveListener westListener = new MoveListener();
+		MoveListener southListener = new MoveListener();
+
+		//Declare buttons
+		JButton northButton = new JButton("North");
+		northButton.setBounds(265, 25, 89, 23);
+		
+		JButton westButton = new JButton("West");
+		westButton.setBounds(190, 59, 89, 23);
+		
+		JButton eastButton = new JButton("East");
+		eastButton.setBounds(335, 59, 89, 23);
+		
+		JButton southButton = new JButton("South");
+		southButton.setBounds(265, 93, 89, 23);
+
+		//Add listeners to buttons
+		northButton.addActionListener(northListener);
+		westButton.addActionListener(westListener);
+		eastButton.addActionListener(eastListener);
+		southButton.addActionListener(southListener);
+
+		//Add buttons to panel
+		contentPane.add(southButton);
+		contentPane.add(northButton);
+		contentPane.add(westButton);
+		contentPane.add(eastButton);
+	}
+
+	
+	//Interface Methods
 	public void viewItems(GameCharacter theCharacter) {
 		/*ArrayList<Items> itemList = theCharacter.getItems();
 		

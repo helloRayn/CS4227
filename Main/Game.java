@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-import UI.MainWindow;
+import UI.GraphicUserInterface;
 import UI.CLInterface;
 import UI.UserInterface;
 import roomConstructor.NormalRoom;
@@ -67,7 +67,7 @@ public class Game {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainWindow frame = new MainWindow();
+					GraphicUserInterface frame = new GraphicUserInterface();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
