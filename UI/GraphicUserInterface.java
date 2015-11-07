@@ -15,7 +15,7 @@ import characterStructure.GameCharacter;
 import decorator.Items;
 
 
-public class MainWindow extends JFrame implements UserInterface {
+public class GraphicUserInterface extends JFrame implements UserInterface {
 
 	private JPanel contentPane;
 	private JList roomItemsList;
@@ -25,7 +25,7 @@ public class MainWindow extends JFrame implements UserInterface {
 	/**
 	 * Create the frame.
 	 */
-	public MainWindow() {
+	public GraphicUserInterface() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
