@@ -22,8 +22,6 @@ public class GraphicUserInterface extends JFrame implements UserInterface {
 	private JList roomItemsList;
 	private JList myItemsList;
 	
-
-	//Buttons
 	
 	/**
 	 * Create the frame.

@@ -8,24 +8,22 @@ import characterStructure.GameCharacter;
 
 public class MoveListener implements ActionListener {
 
-	//Reference to the player to call move actions
-	private GameCharacter thePlayer;
-
+private String direction;
 	public MoveListener() {
 		//Do nothing
 	}
-	public MoveListener(GameCharacter thePlayer) {
+	public MoveListener(String theDirection) {
 		//Set the parameter as the player reference
 		setPlayer(thePlayer);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		//thePlayer.move(theDoor);
-		System.out.println("I'm listening...");
+		moveDirection(direction);
+		//We could use maps to decide directions etc.
 	}
 
-	public void setPlayer(GameCharacter thePlayer) {
-		this.thePlayer = thePlayer;
+	public void setDirection(String theDirection) {
+		direction = theDirection;
 	}
 
 }
