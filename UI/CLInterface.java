@@ -1,7 +1,7 @@
 package UI;
 
 import java.util.ArrayList;
-import characterStructure.Character;
+import characterStructure.GameCharacter;
 import decorator.Items;
 import java.util.Scanner;
 
@@ -17,7 +17,7 @@ public class CLInterface implements UserInterface {
 		in = reader;
 	}
 
-	public void viewItems(Character theCharacter) {
+	public void viewItems(GameCharacter theCharacter) {
 		int itemcount = theCharacter.howManyItems();
 		ArrayList<Items> itemList = theCharacter.getItems();
 		

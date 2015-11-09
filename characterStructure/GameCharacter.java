@@ -5,40 +5,24 @@ import decorator.Items;
 import roomConstructor.*;
 
 //Interface for grouping player and npc classes.
-public abstract class Character{
+public abstract class GameCharacter {
 
 	protected Room roomIamIn;
 	protected ArrayList<Items> heldItems;
 	protected int itemCount;
 	
 	//Constructor (For use by NPCs)
-	public Character() {
+	public GameCharacter() {
 		heldItems = new ArrayList<Items>();
 	}
 	//Overloaded constructor
-	public Character(Room startRoom) {
+	public GameCharacter(Room startRoom) {
 		heldItems = new ArrayList<Items>();
 		setRoomIamIn(startRoom);
 	}
 	
-	public void registerObserver(ObserverOfCharacter inObserver)
-	{
-		listOfObservers.add(inObserver);
-	}
 	
-	public void unregisterObserver(ObserverOfCharacter inObserver)
-	{
-		for(int i = 0; i < listOfObservers.Size(); i++)
-		{
-			if(inObserver.getName().matches(listOfObservers.get(i).getObserverName()))
-			{
-				inObserver.remove(i);
-				break;
-			}
-		}
-	}
 	
-	public abstract void notifyAll()
 	
 	//Getters and setters
 	//returns room that the character is in
@@ -65,11 +49,6 @@ public abstract class Character{
 		itemCount--;
 	}
 	
-	//Is this really necessary? - Mike
-	public void insertItem(Items newItem, int index) {
-		heldItems.add(index, newItem);
-	}
-	
 	//I'm not sure about this method, we need to talk about how we move npcs. -Owen
-	public abstract void move(Door exit);
+	public abstract void move(AI_Object interactable);
 }
