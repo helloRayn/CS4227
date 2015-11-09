@@ -1,10 +1,11 @@
 package decorator;
+import roomConstructor.Room;
 
 public abstract class Door implements Items{
 	
 	private String name;
 	private String desc;
-	private String exitRoom;
+	private Room exitRoom;
 	
 	//Default constructor
 	public Door() {
@@ -19,12 +20,12 @@ public abstract class Door implements Items{
 	public String getDesc() {
 		return desc;
 	}
-	public String getRoom() {
+	public Room getRoom() {
 		return exitRoom;
 	}
 	
 	//Setters
 	public void setName(String name) {	this.name = name;}
 	public void setDesc(String desc) { 	this.desc = desc;}
-	public void setRoom(String desc) { 	this.desc = exitRoom;}
+	public void setRoom(Room exitRoom) { 	this.exitRoom = exitRoom;}
 }
