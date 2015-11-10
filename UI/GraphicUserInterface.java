@@ -21,6 +21,11 @@ public class GraphicUserInterface extends JFrame implements UserInterface {
 	private JPanel contentPane;
 	private JList roomItemsList;
 	private JList myItemsList;
+
+	private JButton northButton;
+	private JButton westButton;
+	private JButton eastButton;
+	private JButton southButton;
 	
 	
 	/**
@@ -28,7 +33,7 @@ public class GraphicUserInterface extends JFrame implements UserInterface {
 	 */
 	public GraphicUserInterface() {
 		initialSetup();
-		addListeners();
+		addListeners(null, null, null, null);
 	}
 	
 	private void initialSetup() {
@@ -39,79 +44,101 @@ public class GraphicUserInterface extends JFrame implements UserInterface {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		//Adds text area for descriptions of rooms and narration etc.
 		JTextArea narratorArea = new JTextArea();
 		narratorArea.setBounds(22, 24, 158, 172);
 		contentPane.add(narratorArea);
 		
+		//For memento pattern. Shows text from previous room.
 		JButton previousRoomButton = new JButton("<< Previous Room");
 		previousRoomButton.setBounds(32, 207, 131, 23);
 		contentPane.add(previousRoomButton);
 		
+		//Shows items in room
 		JLabel roomItemsLabel = new JLabel("Room Items");
 		roomItemsLabel.setBounds(222, 143, 57, 14);
 		contentPane.add(roomItemsLabel);
-		
-		JLabel myItemsLabel = new JLabel("My Items");
-		myItemsLabel.setBounds(347, 143, 46, 14);
-		contentPane.add(myItemsLabel);
-		
+		//List of items 
 		roomItemsList = new JList();
 		roomItemsList.setBounds(208, 168, 94, 82);
 		contentPane.add(roomItemsList);
 		
+		//Shows items in inventory
+		JLabel myItemsLabel = new JLabel("My Items");
+		myItemsLabel.setBounds(347, 143, 46, 14);
+		contentPane.add(myItemsLabel);
+		//List of inventory
 		myItemsList = new JList();
 		myItemsList.setBounds(324, 168, 89, 82);
 		contentPane.add(myItemsList);
 	}
 
 	//Set up directional buttons and their listeners
-	private void addListeners() {
-		//Declare listeners
-		MoveListener northListener = new MoveListener();
-		MoveListener eastListener = new MoveListener();
-		MoveListener westListener = new MoveListener();
-		MoveListener southListener = new MoveListener();
+	private void addButtons(Door north, Door east, Door west, Door south) {
+		//Remove previous buttons
+		contentPane.remove(northButton);
+		contentPane.remove(eastButton);
+		contentPane.remove(westButton);
+		contentPane.remove(southButton);
 
-		//Declare buttons
-		JButton northButton = new JButton("North");
-		northButton.setBounds(265, 25, 89, 23);
-		
-		JButton westButton = new JButton("West");
-		westButton.setBounds(190, 59, 89, 23);
-		
-		JButton eastButton = new JButton("East");
-		eastButton.setBounds(335, 59, 89, 23);
-		
-		JButton southButton = new JButton("South");
-		southButton.setBounds(265, 93, 89, 23);
 
-		//Add listeners to buttons
-		northButton.addActionListener(northListener);
-		westButton.addActionListener(westListener);
-		eastButton.addActionListener(eastListener);
-		southButton.addActionListener(southListener);
+		//Check if null before adding buttons.
+		if(north != null) {
+			//Declare listeners
+			ActionListener northListener = new MoveListener(north);
 
-		//Add buttons to panel
-		contentPane.add(southButton);
-		contentPane.add(northButton);
-		contentPane.add(westButton);
-		contentPane.add(eastButton);
+			//Declare buttons
+			northButton = new JButton("North");
+			northButton.setBounds(265, 25, 89, 23);
+
+			//Add listeners to buttons
+			northButton.addActionListener(northListener);
+
+			//Add buttons to panel
+			contentPane.add(northButton);
+		}//Repeat for other directions
+		if(east != null) {
+			ActionListener eastListener = new MoveListener(east);
+			eastButton = new JButton("East");
+			eastButton.setBounds(335, 59, 89, 23);
+			eastButton.addActionListener(eastListener);
+
+			contentPane.add(eastButton);
+		}
+		if(west != null) {
+			ActionListener westListener = new MoveListener(west);
+			westButton = new JButton("West");
+			westButton.setBounds(190, 59, 89, 23);
+			westButton.addActionListener(westListener);
+
+			contentPane.add(westButton);
+		}
+		if(south != null) {
+			ActionListener southListener = new MoveListener(south);
+			southButton = new JButton("South");
+			southButton.setBounds(265, 93, 89, 23);
+			southButton.addActionListener(southListener);
+
+			contentPane.add(southButton);
+		}
 	}
 
 	
 	//Interface Methods
 	public void viewItems(GameCharacter theCharacter) {
-		/*ArrayList<Items> itemList = theCharacter.getItems();
+		contentPane.remove(myItemsList);
+
+		ArrayList<Items> itemList = theCharacter.getItems();
 		
 		//No idea if this will work
 		myItemsList = new JList(theCharacter.getItems().toArray())
 		myItemsList.setBounds(324, 168, 89, 82);
-		contentPane.add(myItemsList);*/
+		contentPane.add(myItemsList);
 	}
 	public void useItem(Items theItem) {
-
+		//For later implementation
 	}
 	public void display(String toDisplay) {
-
+		//For showing text on screen. For use with narratorArea
 	}
 }

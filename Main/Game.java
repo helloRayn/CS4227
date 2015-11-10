@@ -32,6 +32,7 @@ public class Game {
 			play();
 		else if(args.length >= 1) {
 			Scanner input;
+			//test < file.txt
 			if(args[0].equalsIgnoreCase("test")) {
 				try {
 					File testFile = new File(args[2]);
