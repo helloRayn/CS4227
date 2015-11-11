@@ -3,29 +3,28 @@ package UI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import decorator.Items;
-import decorato.Door;
-import characterStructure.GameCharacter;
+import decorator.Door;
 
 public class MoveListener implements ActionListener {
 
 //Door for moving through
-private Door exit;
+private Door direction;
 
 	public MoveListener() {
 		//Do nothing
 	}
 	public MoveListener(Door exit) {
 		//Set the parameter as the player reference
-		setPlayer(thePlayer);
+		setDoor(exit);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		exit.move();
+		//direction.move();
+		System.out.println(direction.getName());
 	}
 
 	public void setDoor(Door exit) {
-		direction = theDirection;
+		direction = exit;
 	}
 
 }

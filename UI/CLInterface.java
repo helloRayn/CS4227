@@ -1,12 +1,15 @@
 package UI;
 
-import java.util.ArrayList;
 import characterStructure.GameCharacter;
+import decorator.Door;
 import decorator.Items;
+
 import java.util.Scanner;
 
+import javax.swing.DefaultListModel;
+
 public class CLInterface implements UserInterface {
-	protected Scanner in;
+	private Scanner in;
 	
 	//Default Constructor
 	public CLInterface() {
@@ -19,7 +22,7 @@ public class CLInterface implements UserInterface {
 
 	public void viewItems(GameCharacter theCharacter) {
 		int itemcount = theCharacter.howManyItems();
-		ArrayList<Items> itemList = theCharacter.getItems();
+		DefaultListModel<Items> itemList = theCharacter.getItems();
 		
 		System.out.println("Items Held:\t");
 		while(itemcount > 0) {
@@ -33,5 +36,16 @@ public class CLInterface implements UserInterface {
 	
 	public void display(String toDisplay) {
 		System.out.println(toDisplay);
+	}
+
+	public void showDoors(Door north, Door east, Door west, Door south) {
+		if(north != null)
+			System.out.println("There is a door to the north");
+		if(east != null)
+			System.out.println("There is a door to the east");
+		if(west != null)
+			System.out.println("There is a door to the west");
+		if(south != null)
+			System.out.println("There is a door to the south");
 	}
 }

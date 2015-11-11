@@ -1,23 +1,23 @@
 package characterStructure;
-import java.util.*;
+import javax.swing.DefaultListModel;
 
 import decorator.Items;
 import roomConstructor.*;
 
 //Interface for grouping player and npc classes.
-public abstract class GameCharacter implements AI_Asset{
+public abstract class GameCharacter implements AI_Asset {
 
 	protected Room roomIamIn;
-	protected ArrayList<Items> heldItems;
+	protected DefaultListModel<Items> heldItems;
 	protected int itemCount;
 	
 	//Constructor (For use by NPCs)
 	public GameCharacter() {
-		heldItems = new ArrayList<Items>();
+		heldItems = new DefaultListModel<Items>();
 	}
 	//Overloaded constructor
 	public GameCharacter(Room startRoom) {
-		heldItems = new ArrayList<Items>();
+		heldItems = new DefaultListModel<Items>();
 		setRoomIamIn(startRoom);
 	}
 	
@@ -32,21 +32,21 @@ public abstract class GameCharacter implements AI_Asset{
 	}
 	
 	//Returns list of items carried by character
-	public ArrayList<Items> getItems() {
+	public DefaultListModel<Items> getItems() {
 		return heldItems;
 	}//Shows how many items held by player
 	public int howManyItems() {
 		return itemCount;
 	}//adds item to list
 	public void addItem(Items newItem) {
-		heldItems.add(newItem);
+		heldItems.addElement(newItem);
 		itemCount++;
 	}//removes item
 	public void removeItem(Items newItem) {
-		heldItems.remove(newItem);
+		heldItems.removeElement(newItem);
 		itemCount--;
 	}
 	
 	//I'm not sure about this method, we need to talk about how we move npcs. -Owen
-	public abstract void move(AI_Asset interactable);
+	public abstract void move(DefaultListModel<AI_Asset> interactable);
 }

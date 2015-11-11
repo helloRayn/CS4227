@@ -1,5 +1,7 @@
 package characterStructure;
-import java.util.*;
+
+import javax.swing.DefaultListModel;
+
 import roomConstructor.*;
 import decorator.Items;
 
@@ -12,14 +14,14 @@ public class NPC extends GameCharacter {
 	private Strategy_AI_Interface movementAI;
 
 	public NPC(Strategy_AI_Interface inAI, Room roomIn) 	{
-		heldItems = new ArrayList<Items>();
+		heldItems = new DefaultListModel<Items>();
 		movementAI = inAI;
 		roomIamIn = roomIn;
 	}
 	
 	//execute AI movement logic
 	@Override
-	public void move(ArrayList<AI_Asset> interactables) {
+	public void move(DefaultListModel<AI_Asset> interactables) {
 		movementAI.execute(interactables);
 	}
 	

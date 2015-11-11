@@ -1,17 +1,18 @@
 package UI;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextArea;
+import javax.swing.DefaultListModel;
+import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
 import characterStructure.GameCharacter;
+import decorator.Door;
 import decorator.Items;
 import UI.MoveListener;
 
@@ -19,13 +20,16 @@ import UI.MoveListener;
 public class GraphicUserInterface extends JFrame implements UserInterface {
 
 	private JPanel contentPane;
-	private JList roomItemsList;
-	private JList myItemsList;
+	//private JTextArea narratorArea;
 
 	private JButton northButton;
 	private JButton westButton;
 	private JButton eastButton;
 	private JButton southButton;
+
+	private DefaultListModel<Items> defaultMyItemList;
+	private DefaultListModel<Items> defaultRoomItemList;
+	private DefaultListModel<String> narration;
 	
 	
 	/**
@@ -33,7 +37,7 @@ public class GraphicUserInterface extends JFrame implements UserInterface {
 	 */
 	public GraphicUserInterface() {
 		initialSetup();
-		addListeners(null, null, null, null);
+		addButtons(null, null, null, null);
 	}
 	
 	private void initialSetup() {
@@ -45,22 +49,24 @@ public class GraphicUserInterface extends JFrame implements UserInterface {
 		contentPane.setLayout(null);
 		
 		//Adds text area for descriptions of rooms and narration etc.
-		JTextArea narratorArea = new JTextArea();
+		JScrollPane narratorArea = new JScrollPane();//This allows for a scroll bar
+		narration = new DefaultListModel<String>();
+		JList<String> narrationList = new JList<String>(narration);
 		narratorArea.setBounds(22, 24, 158, 172);
+		narratorArea.setViewportView(narrationList);
 		contentPane.add(narratorArea);
-		
-		//For memento pattern. Shows text from previous room.
-		JButton previousRoomButton = new JButton("<< Previous Room");
-		previousRoomButton.setBounds(32, 207, 131, 23);
-		contentPane.add(previousRoomButton);
 		
 		//Shows items in room
 		JLabel roomItemsLabel = new JLabel("Room Items");
 		roomItemsLabel.setBounds(222, 143, 57, 14);
 		contentPane.add(roomItemsLabel);
 		//List of items 
-		roomItemsList = new JList();
+		defaultRoomItemList = new DefaultListModel<Items>();
+		JList<Items> roomItems = new JList<Items>(defaultRoomItemList);
+		//In order to have scrollbar
+		JScrollPane roomItemsList = new JScrollPane();
 		roomItemsList.setBounds(208, 168, 94, 82);
+		roomItemsList.setViewportView(roomItems);
 		contentPane.add(roomItemsList);
 		
 		//Shows items in inventory
@@ -68,21 +74,51 @@ public class GraphicUserInterface extends JFrame implements UserInterface {
 		myItemsLabel.setBounds(347, 143, 46, 14);
 		contentPane.add(myItemsLabel);
 		//List of inventory
-		myItemsList = new JList();
+		defaultMyItemList = new DefaultListModel<Items>();
+		JList<Items> myItems = new JList<Items>(defaultMyItemList);
+		//In order to have scroll bar
+		JScrollPane myItemsList = new JScrollPane();
 		myItemsList.setBounds(324, 168, 89, 82);
+		myItemsList.setViewportView(myItems);
 		contentPane.add(myItemsList);
+		
+				
+		//Uses item. Unfinished
+		JButton useButton = new JButton("Use Item");
+		ItemSelectionListener roomItemsListener = new ItemSelectionListener(roomItems);
+		ItemSelectionListener myItemsListener = new ItemSelectionListener(myItems);
+		useButton.addActionListener(roomItemsListener);
+		useButton.addActionListener(myItemsListener);
+		useButton.setBounds(32, 207, 131, 23);
+		contentPane.add(useButton);
 	}
 
 	//Set up directional buttons and their listeners
 	private void addButtons(Door north, Door east, Door west, Door south) {
 		//Remove previous buttons
+		try {
 		contentPane.remove(northButton);
+		} catch (NullPointerException e) {
+			//Button isn't visible
+		}
+		try {
 		contentPane.remove(eastButton);
+		} catch (NullPointerException e) {
+			//Button isn't visible
+		}
+		try {
 		contentPane.remove(westButton);
+		} catch (NullPointerException e) {
+			//Button isn't visible
+		}
+		try {
 		contentPane.remove(southButton);
+		} catch (NullPointerException e) {
+			//Button isn't visible
+		}
 
 
-		//Check if null before adding buttons.
+		//Check if null before adding buttons. Null means no door in that direction
 		if(north != null) {
 			//Declare listeners
 			ActionListener northListener = new MoveListener(north);
@@ -126,19 +162,18 @@ public class GraphicUserInterface extends JFrame implements UserInterface {
 	
 	//Interface Methods
 	public void viewItems(GameCharacter theCharacter) {
-		contentPane.remove(myItemsList);
-
-		ArrayList<Items> itemList = theCharacter.getItems();
-		
-		//No idea if this will work
-		myItemsList = new JList(theCharacter.getItems().toArray())
-		myItemsList.setBounds(324, 168, 89, 82);
-		contentPane.add(myItemsList);
+		//Updates list on gui with items
+		defaultMyItemList = theCharacter.getItems();
 	}
 	public void useItem(Items theItem) {
 		//For later implementation
 	}
 	public void display(String toDisplay) {
 		//For showing text on screen. For use with narratorArea
+		narration.addElement(toDisplay);
+	}
+
+	public void showDoors(Door north, Door east, Door west, Door south) {
+		addButtons(north, east, west, south);
 	}
 }
