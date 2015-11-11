@@ -5,7 +5,7 @@ import decorator.Items;
 import roomConstructor.*;
 
 //Interface for grouping player and npc classes.
-public abstract class GameCharacter {
+public abstract class GameCharacter implements AI_Asset{
 
 	protected Room roomIamIn;
 	protected ArrayList<Items> heldItems;
@@ -20,8 +20,6 @@ public abstract class GameCharacter {
 		heldItems = new ArrayList<Items>();
 		setRoomIamIn(startRoom);
 	}
-	
-	
 	
 	
 	//Getters and setters
@@ -50,5 +48,5 @@ public abstract class GameCharacter {
 	}
 	
 	//I'm not sure about this method, we need to talk about how we move npcs. -Owen
-	public abstract void move(AI_Object interactable);
+	public abstract void move(AI_Asset interactable);
 }

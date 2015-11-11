@@ -7,5 +7,6 @@ public interface ObserverOfCharacter
 	public String getObserverName();
 
 	//Necessary for Observer pattern.
-	public void notifyObservers();
+	//Notify is already a method of Object.
+	public void notifyThisObserver();
 }

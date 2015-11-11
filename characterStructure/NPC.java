@@ -19,8 +19,8 @@ public class NPC extends GameCharacter {
 	
 	//execute AI movement logic
 	@Override
-	public void move(AI_Object interactable) {
-		movementAI.execute(interactable);
+	public void move(ArrayList<AI_Asset> interactables) {
+		movementAI.execute(interactables);
 	}
 	
 }

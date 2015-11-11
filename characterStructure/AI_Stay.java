@@ -9,7 +9,7 @@ public class AI_Stay implements Strategy_AI_Interface
 	public AI_Stay() 	{
 	}
 	
-	public void execute(AI_Object interactable) {
+	public void execute(ArrayList<AI_Asset> interactable) {
 		System.out.println("Stay AI Executed.");
 	}
 }
