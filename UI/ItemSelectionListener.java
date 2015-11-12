@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JList;
 import javax.swing.ListModel;
+import javax.swing.JOptionPane;
 
 import decorator.Items;
 
@@ -29,6 +30,9 @@ public class ItemSelectionListener implements ActionListener {
 			//Use item at index in items list
 			/*itemList.getElement(index).use();*/
 			System.out.println("Using item:" + itemList.getElementAt(index).getName());
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Please select an item in the list", "No item selected!", 2);
 		}
 	}
 

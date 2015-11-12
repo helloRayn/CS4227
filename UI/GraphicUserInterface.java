@@ -84,13 +84,16 @@ public class GraphicUserInterface extends JFrame implements UserInterface {
 		
 				
 		//Uses item. Unfinished
-		JButton useButton = new JButton("Use Item");
+		JButton roomUseButton = new JButton("Use Room Item");
+		JButton myUseButton = new JButton("Use My Item");
 		ItemSelectionListener roomItemsListener = new ItemSelectionListener(roomItems);
 		ItemSelectionListener myItemsListener = new ItemSelectionListener(myItems);
-		useButton.addActionListener(roomItemsListener);
-		useButton.addActionListener(myItemsListener);
-		useButton.setBounds(32, 207, 131, 23);
-		contentPane.add(useButton);
+		roomUseButton.addActionListener(roomItemsListener);
+		myUseButton.addActionListener(myItemsListener);
+		roomUseButton.setBounds(32, 207, 131, 23);
+		myUseButton.setBounds(32, 230, 131, 23);
+		contentPane.add(myUseButton);
+		contentPane.add(roomUseButton);
 	}
 
 	//Set up directional buttons and their listeners
