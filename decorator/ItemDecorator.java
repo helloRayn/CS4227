@@ -20,19 +20,3 @@ abstract class ItemDecorator implements Items {
 	}
 	
 }
-/*class TestItem extends ItemDecorator {
-	
-	public TestItem (Items i){
-		super(i);
-		name = "test";
-		desc = "This is a test";
-	}
-	
-	public String getName(){
-		return name;
-	}
-	
-	public String getDesc(){
-		return desc;
-	}
-}*/

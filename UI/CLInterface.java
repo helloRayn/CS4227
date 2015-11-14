@@ -25,8 +25,10 @@ public class CLInterface implements UserInterface {
 		DefaultListModel<Items> itemList = theCharacter.getItems();
 		
 		System.out.println("Items Held:\t");
+		InputLogger.SCANNER.log("Items Held: \t");
 		while(itemcount > 0) {
 			System.out.println(itemList.get(itemcount).getName());
+			InputLogger.SCANNER.log(itemList.get(itemcount).getName());
 			itemcount--;
 		}
 	}
@@ -36,6 +38,7 @@ public class CLInterface implements UserInterface {
 	
 	public void display(String toDisplay) {
 		System.out.println(toDisplay);
+		InputLogger.SCANNER.log("Displayed: \t"toDisplay);
 	}
 
 	public void showDoors(Door north, Door east, Door west, Door south) {

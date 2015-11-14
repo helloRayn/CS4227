@@ -13,6 +13,7 @@ public abstract class Room {
 	
 	private ArrayList<Player> whoIsInRoom;
 	private ArrayList<Items> whatIsInRoom;
+	private Door[] doorsFromRoom;
 	
 	
 	//Returns list of people in room
@@ -21,6 +22,9 @@ public abstract class Room {
 	}//Returns list of items (eg. Doors) in room
 	public ArrayList<Items> getLayout() {
 		return whatIsInRoom;
+	}
+	public Door[] getExits() {
+		return doorsFromRoom;
 	}
 	
 	//For adding/removing players in room
@@ -48,6 +52,20 @@ public abstract class Room {
 		if (!whatIsInRoom.contains(item))
 			return false;
 		whatIsInRoom.remove(item);
+		return true;
+	}
+
+	//For adding and removing exits from
+	public boolean setDoor(Door door, int index) {
+		if (index < 0 || index > 3)
+			return false;
+		doorsFromRoom[index] = door;
+		return true;
+	}
+	public boolean removeDoor(Door door) {
+		if (index < 0 || index > 3)
+			return false;
+		doorsFromRoom[index] = null;
 		return true;
 	}
 }

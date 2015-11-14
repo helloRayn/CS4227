@@ -21,6 +21,10 @@ private Door direction;
 	public void actionPerformed(ActionEvent e) {
 		//direction.move();
 		System.out.println(direction.getName());
+		//Game.changeRoom(direction); ?
+
+		//Send to log file
+		InputLogger.LOGGER.log("User selected " + direction.getName() + " door.");
 	}
 
 	public void setDoor(Door exit) {

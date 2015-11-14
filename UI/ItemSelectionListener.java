@@ -12,6 +12,7 @@ import decorator.Items;
 public class ItemSelectionListener implements ActionListener {
 
 	private JList<Items> myList;
+	private String logData;
 
 	public ItemSelectionListener() {
 		//Do nothing yet
@@ -30,10 +31,19 @@ public class ItemSelectionListener implements ActionListener {
 			//Use item at index in items list
 			/*itemList.getElement(index).use();*/
 			System.out.println("Using item:" + itemList.getElementAt(index).getName());
+
+			//To print to log
+			logData = "Using item:" + itemList.getElementAt(index).getName();
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "Please select an item in the list", "No item selected!", 2);
+			//To print log
+			logData = "No item selected!";
 		}
+
+		//Sends the string to log to be printed
+		InputLogger.LOGGER.log(logData);
+
 	}
 
 	public void setButton(JList<Items> theList) {
