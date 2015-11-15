@@ -1,5 +1,6 @@
 package main;
 
+import UI.InputLogger;
 import UI.UIFactory;
 import UI.UserInterface;
 
@@ -11,6 +12,8 @@ public class MazeGenerator {
 		//Factory method to make UI
 		UIFactory factory = new UIFactory();
 		UserInterface ui = factory.makeGraphicUserInterface();
+		
+		InputLogger LOGGER = new InputLogger();
 
 		TestConfiguration testLayout = new TestConfiguration();
 		testLayout.layoutOne();

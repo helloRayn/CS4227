@@ -1,6 +1,8 @@
 package UI;
 
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,7 +22,6 @@ import UI.MoveListener;
 public class GraphicUserInterface extends JFrame implements UserInterface {
 
 	private JPanel contentPane;
-	//private JTextArea narratorArea;
 
 	private JButton northButton;
 	private JButton westButton;
@@ -41,7 +42,7 @@ public class GraphicUserInterface extends JFrame implements UserInterface {
 	}
 	
 	private void initialSetup() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -94,6 +95,17 @@ public class GraphicUserInterface extends JFrame implements UserInterface {
 		myUseButton.setBounds(32, 230, 131, 23);
 		contentPane.add(myUseButton);
 		contentPane.add(roomUseButton);
+
+		//For closing the program with x button
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				//Close the PrintWriter
+				InputLogger.log("===End of input===");
+				InputLogger.close();
+				//Exits the program
+				System.exit(0);
+			}
+		});
 	}
 
 	//Set up directional buttons and their listeners

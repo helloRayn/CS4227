@@ -11,11 +11,9 @@ public class InputLogger {
 
 	private static PrintWriter output;
 	
-	//For testing remove later
-	private static File logFile;
 
 	public InputLogger() {
-		initiate("D:\\log.txt");
+		initiate("log.txt");
 	}
 	public InputLogger(String anotherFile) {
 		initiate(anotherFile);
@@ -23,23 +21,24 @@ public class InputLogger {
 
 	public void initiate(String filename) {
 		try {
-			/*File */logFile = new File(filename);
+			//Checks for file and creates if it doesn't exist.
+			File logFile = new File(filename);
 			if(!logFile.exists()) {
 	    		if(!logFile.createNewFile())
 	    			System.err.println("Error creating log file. Please verify that files can be created.");
 	    	}
+			
+			//Starts output
 	    	output = new PrintWriter(logFile);
-		} catch (Exception e) {
+	    	log("===Start of input===");
+		} 
+		catch (Exception e) {
 			System.err.println("Error accessing log file. Please verify that files can be created.");
 		}
 	}
 
 	public static void log(String action) {
-		try {
-			output = new PrintWriter(logFile);
-			} catch (Exception e) {
-			e.printStackTrace(System.out);
-		}
+		
 		try {
 			output.println(action);
 		} catch (Exception e) {
@@ -48,7 +47,7 @@ public class InputLogger {
 		}
 	}
 
-	public void close() {
+	public static void close() {
 		output.close();
 	}
 }
