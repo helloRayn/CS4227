@@ -160,6 +160,9 @@ public class GraphicUserInterface extends JFrame implements UserInterface {
 
 			contentPane.add(southButton);
 		}
+		
+		//Redraw the panel so the changes are taken into effect
+		contentPane.updateUI();
 	}
 
 	

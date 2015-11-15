@@ -44,7 +44,9 @@ public class Game {
 		ui.showDoors(doors[0], doors[1], doors[2], doors[3]);
 	}
 
-
+	public static void display(String toDisplay) {
+		ui.display(toDisplay);
+	}
 
 
 

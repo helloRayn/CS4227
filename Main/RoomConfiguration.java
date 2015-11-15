@@ -24,7 +24,7 @@ public abstract class RoomConfiguration {
 
 	public void connectRooms(Room origination, Room destination, Door connector, int position) {
 		//Checks if door already exists in the room
-		if (!origination.setDoor(connector, position)) {
+		if (origination.setDoor(connector, position)) {
 			connector.setRoom(destination);
 		}
 	}
