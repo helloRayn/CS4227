@@ -68,23 +68,23 @@ public class CLInterface implements UserInterface {
 			InputLogger.log("User input: \t" + input);
 
 			//Check if input corresponds with correct door
-			if(north != null && input.matches("[nN]+(?:orth)?")) {
+			if(north != null && input.matches("[nN]+([oO][rR][tT][hH])?")) {
 				direction = north;
 				go = true;
 			}
-			else if(east != null && input.matches("[eE]+(?:ast)?")) {
+			else if(east != null && input.matches("[eE]+([aA][sS][tT])?")) {
 				direction = east;
 				go = true;
 			}
-			else if(west != null && input.matches("[wW]+(?:est)?")) {
+			else if(west != null && input.matches("[wW]+([eE][sS][tT])?")) {
 				direction = west;
 				go = true;
 			}
-			else if(south != null && input.matches("[sS]+(?:outh)?")) {
+			else if(south != null && input.matches("[sS]+([oO][uU][tT][hH])?")) {
 				direction = south;
 				go = true;
 			}
-			else if (input.matches("(?:exit)"))
+			else if (input.matches("[eE][xX][iI][tT]"))
 				exit();
 			else
 				displayWarning("Please select one of the given directions. Enter \"Exit\" to leave game.");
