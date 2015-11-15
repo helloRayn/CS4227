@@ -1,11 +1,14 @@
 package main;
 
 
+import javax.swing.DefaultListModel;
+
 import UI.UserInterface;
 import roomConstructor.NormalRoom;
 import roomConstructor.Room;
 import roomConstructor.RoomConfiguration;
 import characterStructure.NpcConfiguration;
+import characterStructure.ObserverOfCharacter;
 import characterStructure.Player;
 import characterStructure.GameCharacter;
 import decorator.Door;
@@ -18,6 +21,9 @@ public class Game {
 	private RoomConfiguration layout;
 	private static Player playerCharacter;
 	private NpcConfiguration npcs;
+	
+	private boolean threadfaster = false;
+	private boolean threadslower = false;
 	
 	public Game(UserInterface ui) {
 		setUI(ui);
@@ -43,10 +49,14 @@ public class Game {
 	//Instantiates all of the NPC GameCharacters
 	public void createNPCs() {
 		npcs.startUp();
+		playerCharacter.setObservers(npcs.getNpcList());
 	}
 
 	public static void changeRoom(Door exit) {
 		playerCharacter.setRoomIamIn(exit.getRoom());
+		
+		//checkTiming();		
+		playerCharacter.threadedNotifyAll(); // THREADED
 
 		//Reset ui accordingly
 		Door[] doors = playerCharacter.getRoomIamIn().getExits();
@@ -58,7 +68,15 @@ public class Game {
 	}
 
 	
-
+	public static void checkTiming() {
+		//For checking timing
+		long startTime = System.currentTimeMillis();
+		//playerCharacter.sequentialNotifyAll(); // SEQUENTIAL
+		playerCharacter.threadedNotifyAll(); // THREADED
+		long endTime   = System.currentTimeMillis();
+		long totalTime = endTime - startTime;
+		display("Notification time taken: \t" + totalTime);
+	}
 
 
 

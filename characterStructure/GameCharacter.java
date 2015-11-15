@@ -10,6 +10,7 @@ public abstract class GameCharacter implements AI_Asset {
 	protected Room roomIamIn;
 	protected DefaultListModel<Items> heldItems;
 	protected int itemCount;
+	protected String name;
 	
 	//Constructor (For use by NPCs)
 	public GameCharacter() {
@@ -50,4 +51,8 @@ public abstract class GameCharacter implements AI_Asset {
 	//I'm not sure about this method, we need to talk about how we move npcs. -Owen
 	public abstract void execute(DefaultListModel<AI_Asset> interactable);
 	public abstract void execute(AI_Asset interactable);
+	
+	
+	public String getName() {	return name;	}
+	public void setName(String newName) { name = newName; }
 }

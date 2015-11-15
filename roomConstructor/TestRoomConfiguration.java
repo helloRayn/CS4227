@@ -30,10 +30,36 @@ public class TestRoomConfiguration extends RoomConfiguration {
 			rooms[i] = roomBuilder.buildRoom();
 		}
 		Door[] doors = new Door[10];
-		for(int i = 0; i < doors.length; i++) {
-			doors[i] = new NormalDoor();
-			//Decorator? How does it work?
-		}
+		doors[0] = new NormalDoor();
+		doors[0].setDesc("You enter the North Room");
+
+		doors[1] = new NormalDoor();
+		doors[1].setDesc("You enter the Middle Room");
+
+		doors[2] = new NormalDoor();
+		doors[2].setDesc("You enter the East Room");
+
+		doors[3] = new NormalDoor();
+		doors[3].setDesc("You enter the Middle Room");
+
+		doors[4] = new NormalDoor();
+		doors[4].setDesc("You enter the South Room");
+
+		doors[5] = new NormalDoor();
+		doors[5].setDesc("You enter the Middle Room");
+
+		doors[6] = new NormalDoor();
+		doors[6].setDesc("You enter the West Room");
+
+		doors[7] = new NormalDoor();
+		doors[7].setDesc("You enter the Middle Room");
+
+		doors[8] = new NormalDoor();
+		doors[8].setDesc("You enter the Corner Room");
+
+		doors[9] = new NormalDoor();
+		doors[9].setDesc("You enter the North Room");
+		
 		/*
 		[ ]	[0]<[1]
 			 |	 ^

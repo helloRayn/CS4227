@@ -16,7 +16,7 @@ public class Player extends GameCharacter {
 		super(startRoom);
 	}
 	
-		
+	public void setObservers(DefaultListModel<ObserverOfCharacter> yourObservers) { myObservers = yourObservers; }
 	public void addObserver(ObserverOfCharacter inObserver)
 	{
 		myObservers.addElement(inObserver);
@@ -32,11 +32,11 @@ public class Player extends GameCharacter {
 		for(int i = 0; i < myObservers.size(); i++)
 		{
 			myObservers.get(i).notifyThisObserver();
-			//Modify notifyThisObserver to take in whatever the observeres will need to know -Owen
+			//Modify notifyThisObserver to take in whatever the observers will need to know -Owen
 		}
 	}
 	
-	public void threadedNotifyAll()// a multithreaded version of notifyall
+	public void threadedNotifyAll()// a multithreaded version of notifyAll
 	{
 		for(int i = 0; i < myObservers.size(); i++)
 		{
