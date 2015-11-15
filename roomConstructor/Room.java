@@ -2,32 +2,33 @@ package roomConstructor;
 
 import javax.swing.DefaultListModel;
 
-import characterStructure.Player;
+import characterStructure.AI_Asset;
+import characterStructure.GameCharacter;
 import decorator.Door;
 import decorator.Items;
 
-public abstract class Room {
+public abstract class Room implements AI_Asset {
 	/*
 	 * This was originally an interface
 	 * I switched it to an abstract class to reduce code duplication
 	 * I don't think it makes too much of a difference but I could be wrong
 	 */
 	
-	private DefaultListModel<Player> whoIsInRoom;
+	private DefaultListModel<GameCharacter> whoIsInRoom;
 	private DefaultListModel<Items> whatIsInRoom;
 	private Door[] doorsFromRoom;
 	
 	
 	//Constructor
 	public Room() {
-		whoIsInRoom = new DefaultListModel<Player>();
+		whoIsInRoom = new DefaultListModel<GameCharacter>();
 		whatIsInRoom = new DefaultListModel<Items>();
 		doorsFromRoom = new Door[4];
 	}
 	
 	
 	//Returns list of people in room
-	public DefaultListModel<Player> getWhoIsInRoom() {
+	public DefaultListModel<GameCharacter> getWhoIsInRoom() {
 		return whoIsInRoom;
 	}//Returns list of items (eg. Doors) in room
 	public DefaultListModel<Items> getLayout() {
@@ -37,17 +38,17 @@ public abstract class Room {
 		return doorsFromRoom;
 	}
 	
-	//For adding/removing players in room
-	public boolean enterRoom(Player player) {
-		if (whoIsInRoom.contains(player))
+	//For adding/removing Characters in room
+	public boolean enterRoom(GameCharacter theCharacter) {
+		if (whoIsInRoom.contains(theCharacter))
 			return false;
-		whoIsInRoom.addElement(player);
+		whoIsInRoom.addElement(theCharacter);
 		return true;
 	}
-	public boolean exitRoom(Player player) {
-		if (!whoIsInRoom.contains(player))
+	public boolean exitRoom(GameCharacter theCharacter) {
+		if (!whoIsInRoom.contains(theCharacter))
 			return false;
-		whoIsInRoom.removeElement(player);
+		whoIsInRoom.removeElement(theCharacter);
 		return true;
 	}
 	

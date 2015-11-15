@@ -45,12 +45,15 @@ public class Player extends GameCharacter {
 		}
 	}
 	
-	public void move(DefaultListModel<AI_Asset> interactable) {
+	@Override
+	public void execute(DefaultListModel<AI_Asset> interactable) {
 		//This method doesn't need to use the assets passed to it, but it may(this might make getting doors easier).-Owen
-		
-		//I don't think this is a good idea? -Owen
-		//Then why did you write it? - Mikey
-		System.out.println("Move called in player, should not be called");
+		System.out.println("Move called in player");
+	}
+	@Override
+	public void execute(AI_Asset interactable) {
+		//This method doesn't need to use the assets passed to it, but it may(this might make getting doors easier).-Owen
+		System.out.println("Move called in player");
 	}
 	
 }

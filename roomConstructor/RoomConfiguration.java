@@ -1,4 +1,4 @@
-package main;
+package roomConstructor;
 
 import javax.swing.DefaultListModel;
 

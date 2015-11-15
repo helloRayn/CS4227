@@ -48,5 +48,6 @@ public abstract class GameCharacter implements AI_Asset {
 	}
 	
 	//I'm not sure about this method, we need to talk about how we move npcs. -Owen
-	public abstract void move(DefaultListModel<AI_Asset> interactable);
+	public abstract void execute(DefaultListModel<AI_Asset> interactable);
+	public abstract void execute(AI_Asset interactable);
 }

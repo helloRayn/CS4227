@@ -21,8 +21,13 @@ public class NPC extends GameCharacter {
 	
 	//execute AI movement logic
 	@Override
-	public void move(DefaultListModel<AI_Asset> interactables) {
-		movementAI.execute(interactables);
+	public void execute(DefaultListModel<AI_Asset> interactable) {
+		//This method doesn't need to use the assets passed to it, but it may(this might make getting doors easier).-Owen
+		movementAI.execute(interactable);
+	}
+	@Override
+	public void execute(AI_Asset interactable) {
+		movementAI.execute(interactable);
 	}
 	
 }

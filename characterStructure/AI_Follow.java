@@ -10,4 +10,7 @@ public class AI_Follow implements Strategy_AI_Interface
 	public void execute(DefaultListModel<AI_Asset> interactable) {
 		System.out.println("Follow AI Executed.");
 	}
+	public void execute(AI_Asset interactable) {
+		System.out.println("Follow AI Executed.");
+	}
 }

@@ -1,14 +1,12 @@
-package main;
+package roomConstructor;
 
-import roomConstructor.I_RoomFactory;
 import roomConstructor.NormalRoomFactory;
 import roomConstructor.Room;
 import decorator.Door;
-import decorator.ItemDecorator;
 import decorator.NormalDoor;
 
 
-public class TestConfiguration extends RoomConfiguration {
+public class TestRoomConfiguration extends RoomConfiguration {
 
 /*	inherited from parent
  * private DefaultListModel<Room> listOfRooms;
@@ -19,7 +17,7 @@ public class TestConfiguration extends RoomConfiguration {
 
 	
 
-	public TestConfiguration() {
+	public TestRoomConfiguration() {
 		roomBuilder = new NormalRoomFactory();
 	}
 

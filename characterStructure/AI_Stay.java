@@ -1,6 +1,8 @@
 package characterStructure;
 import javax.swing.DefaultListModel;
 
+import main.Game;
+
 public class AI_Stay implements Strategy_AI_Interface
 {
 	//Example AI CLASS
@@ -8,6 +10,9 @@ public class AI_Stay implements Strategy_AI_Interface
 	}
 	
 	public void execute(DefaultListModel<AI_Asset> interactable) {
-		System.out.println("Stay AI Executed.");
+		Game.display("Stay AI Executed.");
+	}
+	public void execute(AI_Asset interactable) {
+		Game.display("Stay AI Executed.");
 	}
 }
