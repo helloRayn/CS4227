@@ -1,7 +1,9 @@
 package roomConstructor;
-import java.util.ArrayList;
+
+import javax.swing.DefaultListModel;
 
 import characterStructure.Player;
+import decorator.Door;
 import decorator.Items;
 
 public abstract class Room {
@@ -11,16 +13,24 @@ public abstract class Room {
 	 * I don't think it makes too much of a difference but I could be wrong
 	 */
 	
-	private ArrayList<Player> whoIsInRoom;
-	private ArrayList<Items> whatIsInRoom;
+	private DefaultListModel<Player> whoIsInRoom;
+	private DefaultListModel<Items> whatIsInRoom;
 	private Door[] doorsFromRoom;
 	
 	
+	//Constructor
+	public Room() {
+		whoIsInRoom = new DefaultListModel<Player>();
+		whatIsInRoom = new DefaultListModel<Items>();
+		doorsFromRoom = new Door[4];
+	}
+	
+	
 	//Returns list of people in room
-	public ArrayList<Player> getWhoIsInRoom() {
+	public DefaultListModel<Player> getWhoIsInRoom() {
 		return whoIsInRoom;
 	}//Returns list of items (eg. Doors) in room
-	public ArrayList<Items> getLayout() {
+	public DefaultListModel<Items> getLayout() {
 		return whatIsInRoom;
 	}
 	public Door[] getExits() {
@@ -31,13 +41,13 @@ public abstract class Room {
 	public boolean enterRoom(Player player) {
 		if (whoIsInRoom.contains(player))
 			return false;
-		whoIsInRoom.add(player);
+		whoIsInRoom.addElement(player);
 		return true;
 	}
 	public boolean exitRoom(Player player) {
 		if (!whoIsInRoom.contains(player))
 			return false;
-		whoIsInRoom.remove(player);
+		whoIsInRoom.removeElement(player);
 		return true;
 	}
 	
@@ -45,13 +55,13 @@ public abstract class Room {
 	public boolean addItem(Items item) {
 		if (whatIsInRoom.contains(item))
 			return false;
-		whatIsInRoom.add(item);
+		whatIsInRoom.addElement(item);
 		return true;
 	}
 	public boolean removeItem(Items item) {
 		if (!whatIsInRoom.contains(item))
 			return false;
-		whatIsInRoom.remove(item);
+		whatIsInRoom.removeElement(item);
 		return true;
 	}
 
@@ -63,9 +73,12 @@ public abstract class Room {
 		return true;
 	}
 	public boolean removeDoor(Door door) {
-		if (index < 0 || index > 3)
-			return false;
-		doorsFromRoom[index] = null;
-		return true;
+		for(int i = 0; i < 4; i++) {
+			if (doorsFromRoom[i] == door) {
+				doorsFromRoom[i] = null;
+				return true;
+			}
+		}
+		return false;
 	}
 }

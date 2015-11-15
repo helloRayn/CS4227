@@ -1,29 +1,39 @@
 package main;
 
+import roomConstructor.I_RoomFactory;
+import roomConstructor.NormalRoomFactory;
+import roomConstructor.Room;
+import decorator.Door;
+import decorator.ItemDecorator;
+import decorator.NormalDoor;
+
 
 public class TestConfiguration extends RoomConfiguration {
 
-//private DefaultListModel<Room> listOfRooms; (inherited)
+/*	inherited from parent
+ * private DefaultListModel<Room> listOfRooms;
+ * private I_RoomFactory roomBuilder;
+ * private ItemDecorator itemBuilder;
+ * private Room startRoom;
+ */
 
-	private I_RoomFactory roomBuilder;
-	private ItemDecorator itemBuilder;
-	private Room startRoom;
+	
 
 	public TestConfiguration() {
-		roomBuilder = normalRoomFactory();
+		roomBuilder = new NormalRoomFactory();
 	}
 
 	public void layoutOne() {
 		setStart(roomBuilder.buildRoom());
 
 		//Instantiate doors and rooms
-		Room[] rooms = new Rooms[5];
+		Room[] rooms = new Room[5];
 		for(int i = 0; i < rooms.length; i++) {
 			rooms[i] = roomBuilder.buildRoom();
 		}
-		Door[] doors = new Doors[10];
+		Door[] doors = new Door[10];
 		for(int i = 0; i < doors.length; i++) {
-			doors[i] = new Door();
+			doors[i] = new NormalDoor();
 			//Decorator? How does it work?
 		}
 		/*
@@ -32,29 +42,27 @@ public class TestConfiguration extends RoomConfiguration {
 		[4]-[s]-[2]
 			 |
 		[ ]	[3]	[ ]
+		
+		0 = north
+		1 = east
+		2 = west
+		3 = south
 		*/
-		connectRooms(startRoom, rooms[0], doors[0]);
-		connectRooms(rooms[0], startRoom, doors[1]);
+		connectRooms(startRoom, rooms[0], doors[0], 0);
+		connectRooms(rooms[0], startRoom, doors[1], 3);
 
-		connectRooms(startRoom, rooms[2], doors[2]);
-		connectRooms(rooms[2], startRoom, doors[3]);
+		connectRooms(startRoom, rooms[2], doors[2], 1);
+		connectRooms(rooms[2], startRoom, doors[3], 2);
 
-		connectRooms(startRoom, rooms[3], doors[4]);
-		connectRooms(rooms[3], startRoom, doors[5]);
+		connectRooms(startRoom, rooms[3], doors[4], 3);
+		connectRooms(rooms[3], startRoom, doors[5], 0);
 
-		connectRooms(startRoom, rooms[4], doors[6]);
-		connectRooms(rooms[4], startRoom, doors[7]);
+		connectRooms(startRoom, rooms[4], doors[6], 2);
+		connectRooms(rooms[4], startRoom, doors[7], 1);
 
-		connectRooms(rooms[2], rooms[1], doors[8]);
-		connectRooms(rooms[1], rooms[0], doors[9]);
+		connectRooms(rooms[2], rooms[1], doors[8], 0);
+		connectRooms(rooms[1], rooms[0], doors[9], 2);
 
 	}
 
-	//Setters and getters for all variables
-	public void setRoomBuilder(I_RoomFactory rBuilder) 	{ roomBuilder = rBuilder;	}
-	public I_RoomFactory getRoomBuilder() 				{ return roomBuilder	}
-	public void setItemBuilder(ItemDecorator iBuilder) 	{ itemBuilder = iBuilder:	}
-	public ItemDecorator getItemBuilder() 				{ return itemBuilder;	}
-	public void setStart(Room newStart) { startRoom = newStart;	}
-	public Room getStart() 				{ return startRoom;	}
 }

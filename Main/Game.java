@@ -6,14 +6,16 @@ import roomConstructor.NormalRoom;
 import roomConstructor.Room;
 import characterStructure.Player;
 import characterStructure.GameCharacter;
+import decorator.Door;
 
 
 public class Game {
 
 	//This class will be using Facade pattern.
-	private UserInterface ui;
+	private static UserInterface ui;
 	private RoomConfiguration layout;
-	private Room currentRoom;
+	private static Room currentRoom;
+	private GameCharacter playerCharacter;
 	
 	public Game(UserInterface ui) {
 		setUI(ui);
@@ -23,17 +25,18 @@ public class Game {
 		//Generate all Characters and items
 		initiateObjects();
 		
-		ui.display("Test");
+		ui.display("You are in a room with 4 doors");
+		changeRoom(layout.setUp());
 
 	}
 	
 	public void initiateObjects() {
 		// This will be the main method
 		Room startRoom = new NormalRoom();
-		GameCharacter playerCharacter = new Player(startRoom);
+		playerCharacter = new Player(startRoom);
 	}
 
-	public void changeRoom(Door exit) {
+	public static void changeRoom(Door exit) {
 		currentRoom = exit.getRoom();
 
 		//Reset ui accordingly

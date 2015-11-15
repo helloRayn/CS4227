@@ -1,6 +1,6 @@
 package decorator;
 
-abstract class ItemDecorator implements Items {
+public abstract class ItemDecorator implements Items {
 	
 	protected Items itemToBeDecorated;
 	protected String name;

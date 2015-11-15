@@ -1,10 +1,16 @@
+package UI;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 
 
 public class InputLogger {
 
 	//Necessary for interceptor pattern
 
-	private PrintWriter output;
+	private static PrintWriter output;
 
 	public InputLogger() {
 		initiate("log.txt");
@@ -14,15 +20,18 @@ public class InputLogger {
 	}
 
 	public void initiate(String filename) {
-
-		File logFile = new File(filename);
-		if(!logFile.exists()) {
-    		logFile.createNewFile();
-    	}
-    	output = new Printwriter(logFile);
+		try {
+			File logFile = new File(filename);
+			if(!logFile.exists()) {
+	    		logFile.createNewFile();
+	    	}
+	    	output = new PrintWriter(logFile);
+		} catch (Exception e) {
+			System.err.println("Error printing to log file. Please verify that files can be created.");
+		}
 	}
 
-	public void log(String action) {
+	public static void log(String action) {
 		try {
 			output.println(action);
 		} catch (Exception e) {
@@ -31,6 +40,6 @@ public class InputLogger {
 	}
 
 	public void close() {
-		output.close;
+		output.close();
 	}
 }

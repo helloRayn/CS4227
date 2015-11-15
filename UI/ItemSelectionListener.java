@@ -42,7 +42,7 @@ public class ItemSelectionListener implements ActionListener {
 		}
 
 		//Sends the string to log to be printed
-		InputLogger.LOGGER.log(logData);
+		InputLogger.log(logData);
 
 	}
 

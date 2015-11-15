@@ -11,12 +11,11 @@ public class MazeGenerator {
 		//Factory method to make UI
 		UIFactory factory = new UIFactory();
 		UserInterface ui = factory.makeGraphicUserInterface();
-		static InputLogger LOGGER = new InputLogger();
 
-		RoomConfiguration testLayout = new TestConfiguration();
+		TestConfiguration testLayout = new TestConfiguration();
 		testLayout.layoutOne();
 
-		static Game game = new Game(ui);
+		Game game = new Game(ui);
 		game.setLayout(testLayout);
 
 		game.play();
