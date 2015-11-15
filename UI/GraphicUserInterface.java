@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -189,6 +190,14 @@ public class GraphicUserInterface extends JFrame implements UserInterface {
 	public void display(String toDisplay) {
 		//For showing text on screen. For use with narratorArea
 		narration.addElement(toDisplay);
+		//Log
+		InputLogger.log("Displayed: \t" + toDisplay);
+	}
+	public void displayWarning(String toDisplay) {
+		//For showing text on screen. For use with narratorArea
+		JOptionPane.showMessageDialog(null, toDisplay, "Warning Message", 2);
+		//Log
+		InputLogger.log("Displayed Warning: \t" + toDisplay);
 	}
 
 	public void showDoors(Door north, Door east, Door west, Door south) {
