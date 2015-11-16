@@ -14,9 +14,13 @@ public abstract class ItemDecorator implements Items {
 		return itemToBeDecorated.getName();
 	}
 	
-	//What does this even do? - Mikey
+	
 	public String getDesc(){
-		return itemToBeDecorated.getName();
+		return itemToBeDecorated.getDesc();
+	}
+	
+	public void Use(){
+		itemToBeDecorated.Use();
 	}
 	
 }
